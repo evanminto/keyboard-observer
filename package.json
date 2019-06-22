@@ -1,0 +1,28 @@
+{
+  "name": "keyboard-observer",
+  "version": "1.0.0",
+  "description": "JavaScript utility for observing keyboard events fired while a specific element is focused",
+  "main": "dist/keyboard-observer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c",
+    "watch": "rollup -c --watch",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evanminto/keyboard-observer.git"
+  },
+  "author": "Evan Minto",
+  "license": "MIT",
+  "devDependencies": {
+    "rollup": "^1.15.3",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-node-resolve": "^5.0.2",
+    "rollup-plugin-terser": "^5.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/evanminto/keyboard-observer/issues"
+  },
+  "homepage": "https://github.com/evanminto/keyboard-observer#readme"
+}
