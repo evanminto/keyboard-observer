@@ -1,5 +1,5 @@
 {
-  "name": "keyboard-observer",
+  "name": "@evanminto/keyboard-observer",
   "version": "1.0.0",
   "description": "JavaScript utility for observing keyboard events fired while a specific element is focused",
   "main": "dist/keyboard-observer.js",
