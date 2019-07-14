@@ -13,11 +13,21 @@ export default class KeyboardObserver {
 
       const records = [];
 
-      this.observedElements.forEach(el => {
-        if (document.activeElement === el || el.contains(document.activeElement)) {
+      this.observedElements.forEach(({ target, options }) => {
+        const { penetrateShadowRoots = true } = options;
+        let el = document.activeElement;
+
+        if (penetrateShadowRoots) {
+          // Iterate through shadow roots to find the active element.
+          while (el !== target && !target.contains(el) && el.shadowRoot) {
+            el = el.shadowRoot.activeElement;
+          }
+        }
+
+        if (el === target || target.contains(el)) {
           records.push(new KeyboardRecord({
             event,
-            target: el,
+            target,
           }));
         }
       });
@@ -40,9 +50,13 @@ export default class KeyboardObserver {
    * Initiates observing of a specified Element.
    *
    * @param {Element} target
+   * @param {Object} options
    */
-  observe(target) {
-    this.observedElements.push(target);
+  observe(target, options = {}) {
+    this.observedElements.push({
+      target,
+      options,
+    });
 
     if (!this.observing) {
       window.addEventListener('keydown', this._handleKeydown);
@@ -57,7 +71,7 @@ export default class KeyboardObserver {
    * @param {Element} target
    */
   unobserve(target) {
-    this.observedElements.splice(this.observedElements.indexOf(target));
+    this.observedElements.splice(this.observedElements.findIndex(item => item.target === target));
     this._cleanUpEventListener();
   }
 

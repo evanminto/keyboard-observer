@@ -68,11 +68,13 @@ Constructor. Creates and returns new ResizeObserver object.
 
 ##### disconnect()
 
-##### observe(target)
+##### observe(target, options)
 
 ###### Parameters
 
 **target:** A reference to an `Element` or `SVGElement` to be observed.
+**options:** `Object` with options for customizing the behavior.
+**options.penetrateShadowRoots:** If false, target matching will only work on light DOM elements, not shadow DOM elements. _(Default: true)_
 
 ##### unobserve(target)
 
